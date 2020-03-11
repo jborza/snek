@@ -14,7 +14,7 @@ var snake_direction = RIGHT;
 
 var snake_coords = [];
 
-food_coords = [];
+var food_coords = [];
 
 var canvas = undefined;
 
@@ -25,6 +25,8 @@ const PADDING_TOP = 32;
 const PADDING_LEFT = 32;
 
 var score = 0;
+var frame = 0;
+var ticks_per_move = 10;
 
 function make_coord(x,y){
     return {x:x, y:y};
@@ -93,13 +95,11 @@ function render(){
 
     if(game_over){
         ctx.font = "60px Comic Sans MS";
-
         ctx.fillText("GAME OVER", 20, 180);
     }
 
     if(paused){
         ctx.font = "60px Comic Sans MS";
-
         ctx.fillText("  PAUSE", 40, 180);
     }
 }
@@ -151,9 +151,7 @@ function init_keys(){
     window.addEventListener('keydown',this.onkey,false);
 }
 
-var frame = 0;
 
-var ticks_per_move = 10;
 
 function make_coord_with_direction(previous, direction){
     return make_coord(previous.x + direction.x, previous.y+ direction.y);
